@@ -190,7 +190,7 @@ resource "aws_autoscaling_policy" "main" {
 #source :: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener_rule
 resource "aws_lb_listener_rule" "main" {
   listener_arn = local.alb_listener_arn
-  priority     = 10
+  priority     = var.priority
   action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.main.arn
