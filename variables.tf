@@ -12,3 +12,5 @@ variable "domain_name" {
 }
 variable "service_name" {
 }
+variable "priority" {
+}
