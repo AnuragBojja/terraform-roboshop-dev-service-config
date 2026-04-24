@@ -27,6 +27,9 @@ data "aws_ssm_parameter" "sg_id" {
 data "aws_ssm_parameter" "private_subnet_ids" {
   name = "/${var.project_name}/${var.env}/private_subnet_ids"
 }
+data "aws_ssm_parameter" "public_subnet_ids" {
+  name = "/${var.project_name}/${var.env}/public_subnet_ids"
+}
 data "aws_ssm_parameter" "shh_loginpass" {
   name = "/roboshop/${var.env}/ssh/loginpass"
 }
