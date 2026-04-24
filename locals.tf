@@ -25,7 +25,7 @@ locals {
   health_check_path = "${var.service_name}" == "frontend" ? "/" : "/health"
   health_check_port = "${var.service_name}" == "frontend" ? 80 : 8080
 
-  host_header = "${var.service_name}" == "frontend" ? "roboshop-${var.env}.${var.domain_name}" : "${var.service_name}.backend-alb-${var.env}.${var.domain_name}"
+  host_header = "${var.service_name}" == "frontend" ? "${var.project_name}-${var.env}.${var.domain_name}" : "${var.service_name}.backend-alb-${var.env}.${var.domain_name}"
 
 
 }
