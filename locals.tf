@@ -15,8 +15,11 @@ locals {
   private_subnet_ids = split(",",data.aws_ssm_parameter.private_subnet_ids.value)
   public_subnet_id = split(",",data.aws_ssm_parameter.public_subnet_ids.value)[0]
   public_subnet_ids = split(",",data.aws_ssm_parameter.public_subnet_ids.value)
-  subnet_id = "${var.service_name}" == "frontend" ? local.public_subnet_id : local.private_subnet_id
-  subnet_ids = "${var.service_name}" == "frontend" ? local.public_subnet_ids : local.private_subnet_ids
+  #disabling public ip for frontend
+  # subnet_id = "${var.service_name}" == "frontend" ? local.public_subnet_id : local.private_subnet_id
+  # subnet_ids = "${var.service_name}" == "frontend" ? local.public_subnet_ids : local.private_subnet_ids
+  subnet_id = local.private_subnet_id
+  subnet_ids = local.private_subnet_ids
 
   backend_alb_listener_arn = data.aws_ssm_parameter.backend_alb_listener_arn.value
   frontend_alb_listener_arn = data.aws_ssm_parameter.frontend_alb_listener_arn.value
