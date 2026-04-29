@@ -46,24 +46,24 @@ resource "terraform_data" "main" {
   }
 }
 #Stoping configured instance
-resource "aws_ec2_instance_state" "main" {
-  instance_id = aws_instance.main.id
-  state       = "stopped"
-  depends_on = [ terraform_data.main ]
-}
+# resource "aws_ec2_instance_state" "main" {
+#   instance_id = aws_instance.main.id
+#   state       = "stopped"
+#   depends_on = [ terraform_data.main ]
+# }
 
-# creating ami using instance 
-resource "aws_ami_from_instance" "main" {
-  name               = "${local.common_name}-${var.service_name}-ami"
-  source_instance_id = aws_instance.main.id
-  depends_on = [ aws_ec2_instance_state.main ]
-  tags = merge(
-    local.common_tags,
-    {
-        Name = "${local.common_name}-${var.service_name}-ami"
-    }
-  )
-}
+# # creating ami using instance 
+# resource "aws_ami_from_instance" "main" {
+#   name               = "${local.common_name}-${var.service_name}-ami"
+#   source_instance_id = aws_instance.main.id
+#   depends_on = [ aws_ec2_instance_state.main ]
+#   tags = merge(
+#     local.common_tags,
+#     {
+#         Name = "${local.common_name}-${var.service_name}-ami"
+#     }
+#   )
+# }
 # #source:: https://registry.terraform.io/providers/-/aws/6.3.0/docs/resources/launch_template
 # resource "aws_launch_template" "main" {
 #   name = "${local.common_name}-${var.service_name}"
